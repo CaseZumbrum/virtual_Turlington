@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Club = require(".\\Models\\Club");
 const express = require("express");
+const {exec} = require('child_process')
 const app = express();
 
 require("dotenv").config();
@@ -21,8 +22,19 @@ async function getClubs() {
 
 
 app.get('/clubs', async(req,res)=>{
-    res.json(await getClubs());
-    console.log(req.query)
+    let clubs = await getClubs();
+    let command = "python main.py "  + req.query.data + " ";
+    for(let i = 0; i< clubs.length; i++){
+        command += JSON.stringify(clubs[i]) + " ";
+    }
+
+    let sorted_Clubs;
+    exec(command, (err, output) => {
+        sorted_Clubs = JSON.parse(output);
+    })
+
+    res.json(sorted_Clubs);
+    
 });
 app.listen(3001);
 console.log("WE HERE BITCHES");
