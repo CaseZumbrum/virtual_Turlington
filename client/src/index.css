@@ -1,0 +1,51 @@
+html,
+body {
+  font-family: "Poppins";
+  height: 10000;
+}
+
+.main_container {
+  display: flex;
+}
+.searchtab {
+  width: 15%;
+  background-color: yellow;
+}
+
+.searchElement label {
+  width: 100%;
+}
+
+.searchElement input[type="text"] {
+  width: 75%;
+}
+
+.searchElement.timeSearch input[type="text"] {
+  width: 20px;
+}
+.searchElement timeSearch {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag {
+  width: 20%;
+}
+
+.tagForm label {
+  font-weight: 200;
+}
+
+.searchtab {
+  flex: 1;
+  height: 100%;
+}
+
+.clubCards {
+  flex: 4;
+}
+
+.tagGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+}
