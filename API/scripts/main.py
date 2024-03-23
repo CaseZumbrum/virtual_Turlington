@@ -38,10 +38,14 @@ def tagFilter(clubs, userTags):
     matched_clubs = []
     for club in clubs:
         tagCount = sum(1 for tag in userTags if tag in club.tags)
-        matched_clubs.append((club, tagCount))
-        matched_clubs.sort(key=lambda x: x[1], reverse=True)
-        sorted_clubs = [club for club, _ in matched_clubs]
-    return sorted_clubs
+        #matched_clubs.append((club, tagCount))
+        for i in range(tagCount):
+            matched_clubs.append(club)
+        
+   # matched_clubs.sort(key=lambda x: x[1], reverse=True)
+    
+    #sorted_clubs = [club for club, _ in matched_clubs]
+    return matched_clubs
 
 def timeFilter(clubs, userTime):
     matched_clubs = []
