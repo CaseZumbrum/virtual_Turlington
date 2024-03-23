@@ -10,8 +10,7 @@ app.use(express.json())
 
 
 function timeToInt(input){
-
-    let results = input.meetStart.slice(-2, -1) + temp.slice(-1);
+    let results = input.meetStart.slice(-2, -1) + input.meetStart.slice(-1);
     results = input.meetStart.slice(0, -3) + results;
     results = parseInt(results);
     if(input.PM){
@@ -39,37 +38,50 @@ async function getClubs() {
 
 
 app.get('/clubs', async(req,res)=>{
+    
     let clubs = await getClubs();
-    let input = JSON.loads(req.query.data);
-
+    let input = JSON.parse(req.query.data);
+    
     input.meetStart = timeToInt(input);
+    
+    let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
+    
+    for(let i = 0; i< clubs.length-1; i++){
+        clubs[i].meetLength = clubs[i].meetLength[0];
+        clubs[i].meetStart = clubs[i].meetStart[0].toString();
 
-    let command = "python main.py "  + JSON.stringify(input) + " ";
-    for(let i = 0; i< clubs.length; i++){
-        command += JSON.stringify(clubs[i]) + " ";
+        command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
     }
-
-    let sorted_Clubs;
+    command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
+    command += "]\""
+    
+    
+    //console.log(command);
     exec(command, (err, output) => {
         if(err){
-            console.log(output);
+           // console.log(output);
         }
-        sorted_Clubs = JSON.parse(output);
-    })
-
-    for(let i = 0; i< sorted_Clubs.length; i++){
-        if(sorted_Clubs[i].meetStart > 1200){
-            sorted_Clubs[i].meetStart -= 1200;
-            sorted_Clubs[i].PM = true;
+        console.log(output);
+        let sorted_Clubs = JSON.parse(JSON.parse(output.replaceAll("\'","\\\"").replaceAll("True","true").replaceAll("False","false")));
+        console.log(sorted_Clubs);
+        for(let i = 0; i< sorted_Clubs.length; i++){
+            if(sorted_Clubs[i].meetStart > 1200){
+                sorted_Clubs[i].meetStart -= 1200;
+                sorted_Clubs[i].PM = true;
+            }
+            else{
+                sorted_Clubs[i].PM = false;
+                
+            }
+            
+            sorted_Clubs[i].meetStart = intTimetoTime(sorted_Clubs[i].meetStart);
+            
         }
-        else{
-            sorted_Clubs[i].PM = false;
-        }
-        sorted_Clubs[i].meetStart = intTimetoTime(sorted_Clubs[i].meetStart);
         
-    }
-
-    res.json(sorted_Clubs);
+        res.json(sorted_Clubs);
+    })
+    
+   
     
 });
 app.listen(3001);

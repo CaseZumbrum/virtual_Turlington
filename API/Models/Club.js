@@ -4,9 +4,9 @@ const {Schema,model} = mongoose;
 const ClubSchema = new Schema({
   name:String,
   info:String,
-  meetStart:Number,
-  meetLength:Number,
-  day:Number,
+  meetStart:Array,
+  meetLength:Array,
+  day:Array,
   freq:Number,
   links:Array,
   tags:Array,
