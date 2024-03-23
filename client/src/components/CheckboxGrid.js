@@ -1,17 +1,17 @@
-const AllTheTags = ({ tags }) => {
+const CheckboxGrid = (props) => {
   //tags is a list of the available tag names
-  if (!tags) {
+  if (!props.optionList) {
     return <h1>ERROR: no tags exist!</h1>;
   }
 
   //return a form with a bunch of different tags
   return (
     <form action="" className="tags">
-      <div className="tagGrid">
-        {tags.map((tag, index) => (
+      <div className="checkboxGrid">
+        {props.optionList.map((tag, index) => (
           <div key={index} className="tag">
             <label>{tag}</label>
-            <input key={tag} type="checkbox" />
+            <input id={tag} type="checkbox" onChange={props.onChange} />
           </div>
         ))}
       </div>
@@ -19,4 +19,4 @@ const AllTheTags = ({ tags }) => {
   );
 };
 
-export default AllTheTags;
+export default CheckboxGrid;

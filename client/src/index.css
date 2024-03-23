@@ -4,7 +4,7 @@ body {
   height: 10000;
 }
 
-.main_container {
+.flexbox_row {
   display: flex;
 }
 .searchtab {
@@ -22,10 +22,6 @@ body {
 
 .searchElement.timeSearch input[type="text"] {
   width: 20px;
-}
-.searchElement timeSearch {
-  display: flex;
-  flex-direction: row;
 }
 
 .tag {
@@ -45,7 +41,7 @@ body {
   flex: 4;
 }
 
-.tagGrid {
+.checkboxGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
 }

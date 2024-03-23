@@ -8,9 +8,9 @@ import SearchTab from "../components/SearchTab";
 const App = () => {
   return (
     <div className="App">
-      <div className="main_container">
+      <div className="flexbox_row">
         <SearchTab />
-        <div className="clubCards">Hi</div>
+        <div className="clubCards">THE REST OF THE APP LOL</div>
       </div>
     </div>
   );
