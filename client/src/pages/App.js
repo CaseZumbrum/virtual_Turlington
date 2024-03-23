@@ -1,19 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SearchTab from "../components/SearchTab";
 
 //pages and components
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
-        <div className="pages">
-          <h1>Hello World!</h1>
-        </div>
-      </BrowserRouter>
+      <div className="main_container">
+        <SearchTab />
+        <div className="clubCards">Hi</div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
