@@ -15,16 +15,6 @@ import { useState } from "react";
 const LandingPage = () => {
   const [clubs, setClubs] = useState([]);
 
-
-  fetch("http://localhost:3001/homepage").then(
-      (response) => {
-        response.json().then((clubs_response) => {
-          console.log(clubs_response);
-          setClubs(clubs_response);
-        });
-      }
-    );
-
   return (
     <div className="LandingPage">
     <Link to = "/landingpage">
@@ -47,12 +37,16 @@ const LandingPage = () => {
         </Link>
       </div>
       </div>
+
       
 
       <div className="flex-container">
-      {clubs.map((club, index) => (
-            <ClubPromotion club={club} />
-          ))}
+            <ClubPromotion club={testClub}/>
+            <ClubPromotion club={testClub1}/>
+            <ClubPromotion club={testClub2}/>
+            <ClubPromotion club={testClub3}/>
+            <ClubPromotion club={testClub4}/>
+            <ClubPromotion club={testClub5}/>
       </div>
     </div>
   );

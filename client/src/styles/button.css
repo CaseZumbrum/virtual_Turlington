@@ -3,3 +3,13 @@ html,
 .button {
     position: static;
 }
+
+.flexb-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 400px;
+    width: 150%;
+    height: 200%;
+  }
+  
