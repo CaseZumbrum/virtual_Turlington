@@ -1,34 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckboxGrid from "./CheckboxGrid";
-import { useState ,uesEffect} from "react";
+import { convertDayToInt } from "../help/DataConversions";
+import { days, tags } from "../help/ListsAndThings";
+import { useState, useEffect } from "react";
 //pages and components
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
-
-const tags = [
-  "Social",
-  "Professional Development",
-  "STEM",
-  "Arts",
-  "Performance",
-  "Sport",
-  "Service",
-  "Cultural",
-  "Religious",
-  "Engineering",
-  "Business",
-  "Environmental",
-];
-
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
 
 let query = {
   clubName: "",
@@ -40,25 +17,24 @@ let query = {
   app: false,
 };
 
-const SearchTab = () => {
+const SearchTab = ({ setClubs }) => {
   const [tagQuery, setTagQuery] = useState([]);
   const [dayQuery, setDayQuery] = useState([]);
   const [appQuery, setAppQuery] = useState(false);
-  const [clubs,setClubs] = useState([]);
   const handleSubmit = (e) => {
-
     query.day = dayQuery;
     query.tags = tagQuery;
     query.app = appQuery;
-    
-    fetch("http://localhost:3001/clubs?data=" + JSON.stringify(query)).then(response=>{
 
-      response.json().then(clubs => {
-        console.log(clubs);
-        setClubs(clubs);
-      });
-    });
-    console.log(query);
+    fetch("http://localhost:3001/clubs?data=" + JSON.stringify(query)).then(
+      (response) => {
+        response.json().then((clubs_response) => {
+          //console.log(clubs);
+          setClubs(clubs_response);
+        });
+      }
+    );
+    //console.log(query);
   };
 
   const handleGridCheckboxClick = (e, setFunction) => {
