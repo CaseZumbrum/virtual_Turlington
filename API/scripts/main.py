@@ -30,7 +30,7 @@ def nameFilter(clubs, userName):
     matched_clubs = []
     for club in clubs:
         ratio = fuzz.ratio(club.name.lower(), userName.lower())
-        club.score += ratio / 50  # Increase the score based on ratio
+        club.score += ratio /20  # Increase the score based on ratio
         if ratio >= 50:
             matched_clubs.append(club)
     return matched_clubs
@@ -41,6 +41,7 @@ def tagFilter(clubs, userTags):
         tagCount = sum(1 for tag in userTags if tag in club.tags)
         #matched_clubs.append((club, tagCount))
         for i in range(tagCount):
+            matched_clubs.append(club)
             matched_clubs.append(club)
         
    # matched_clubs.sort(key=lambda x: x[1], reverse=True)
