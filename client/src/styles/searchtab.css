@@ -1,10 +1,12 @@
 .searchtab {
   position: fixed;
   margin: 100px 0px 0px 0px;
-  width: 20%;
+  color: #08092a;
+  width: 25%;
   height: 100%;
-  background: #ffffff;
-  padding: 24px 24px 24px 24px;
+  padding: 0px;
+  background: #f5f5f5;
+  padding: 24px;
   border-radius: 0px 0px 0px 0px;
   flex: 1;
 }
@@ -18,19 +20,16 @@
 .searchElement p {
   font-family: Roboto;
   width: 100%;
-  margin: 4px;
 }
 
 .cbGridText {
   font-size: 12px;
   margin: 0px;
-}
-.searchElement input[type="text"] {
-  width: 75%;
+  padding: 0px 0px 0px 10px;
 }
 
 .searchElement.timeSearch input[type="text"] {
-  width: 20px;
+  width: 25%;
 }
 
 .tagForm label {
@@ -41,4 +40,36 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
   grid-gap: 2px;
+}
+
+.searchElement {
+  margin: 5px 2px 10px 2px;
+  width: 100%;
+}
+
+.searchtab.flexbox_row.buttons {
+  margin: 0 auto;
+}
+
+.submitButton,
+.clearButton {
+  margin: 0px 10% 0px 10%;
+  border: none;
+  border-radius: 10px;
+  width: 30%;
+  height: 20px;
+}
+
+.submitButton {
+  background-color: #519ef1;
+  margin: 0px 10px 0px 0px;
+}
+.clearButton {
+  background-color: rgb(191, 191, 191);
+  margin: 0px 0px 0px 20%;
+}
+
+.searchtab input[id="maxDuration"],
+.searchtab input[id="time"] {
+  width: 25%;
 }

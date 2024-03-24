@@ -15,12 +15,12 @@ export const tags = [
 
 export const days = [
   "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
   "Thursday",
+  "Monday",
   "Friday",
+  "Tuesday",
   "Saturday",
+  "Wednesday",
 ];
 
 export const testClub = {

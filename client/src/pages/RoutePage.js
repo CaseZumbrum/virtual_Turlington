@@ -5,10 +5,9 @@ import ClubSite from "./ClubSite";
 function RoutePage() {
   return (
     <Routes>
-      <Route path="/" element={<App />}/>
-        
-        <Route path="/clubsite" element={<ClubSite />} />
-      
+      <Route path="/" element={<App />} />
+
+      <Route path="/clubsite" element={<ClubSite />} />
     </Routes>
   );
 }
