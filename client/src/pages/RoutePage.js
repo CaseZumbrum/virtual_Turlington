@@ -6,6 +6,7 @@ import LandingPage from "./LandingPage";
 function RoutePage() {
   return (
     <Routes>
+
       <Route path="/" element={<App />}></Route>
       <Route path="/clubsite" element={<ClubSite />} />
       <Route path="/landingpage" element={<LandingPage />} />

@@ -5,6 +5,7 @@ const {exec} = require('child_process')
 const cors = require('cors');
 var ObjectID = require('mongodb').ObjectID;
 const app = express();
+const fs = require('node:fs');
 
 require("dotenv").config();
 
@@ -44,25 +45,36 @@ app.get('/clubs', async(req,res)=>{
     let clubs = await getClubs();
     
     let input = JSON.parse(req.query.data);
-    
+    if(input.meetStart == ""){
+        input.meetStart = "00:00"
+    }
     input.meetStart = timeToInt(input);
     
     
-    let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
-    
+    //let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
+    let command = ""  + JSON.stringify(input).replaceAll("\"","\"") + " [";
     for(let i = 0; i< clubs.length-1; i++){
         clubs[i].meetLength = clubs[i].meetLength[0];
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
-        command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
+        command += JSON.stringify(clubs[i]).replaceAll("\"","\"") + ", ";
     }
-    clubs[clubs.length-1].meetLength = clubs[i].meetLength[0];
-    clubs[clubs.length-1].meetStart = clubs[i].meetStart[0].toString();
-    command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
-    command += "]\""
+    clubs[clubs.length-1].meetLength = clubs[clubs.length-1].meetLength[0];
+    clubs[clubs.length-1].meetStart = clubs[clubs.length-1].meetStart[0].toString();
+    command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\"")
+    command += "]"
+    //console.log(command)
     
     
+
+    
+    fs.writeFile('scripts/clubs.txt', command, err => {
+      if (err) {
+        console.error(err);
+      }
+    });
+
     //console.log(command);
-    exec(command, (err, output) => {
+    exec("python scripts/main.py", (err, output) => {
         if(err){
            // console.log(output);
         }
@@ -94,9 +106,12 @@ app.get('/clubs', async(req,res)=>{
 });
 
 app.post('/clubs',async(req,res)=>{
+    console.log("got a post");
     await mongoose.connect(process.env.MONGO_API_KEY);
     input = req.body;
-    
+    input.meetLength = [input.meetLength];
+    input.meetTime = [input.meetTime];
+    input.meetStart = timeToInt(input);
     const club = new Club(input);
     await club.save();
     
@@ -104,5 +119,45 @@ app.post('/clubs',async(req,res)=>{
     mongoose.disconnect();
 });
 
+
+
+let homeList = [];
+app.get('/homepage',async(req,res)=>{
+    let newList = []
+    for (let i = 0; i<6; i++){
+        newList.push(homeList[i][0])
+    }
+});
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+async function frontPageTimer(){
+  while (true) {
+    for (let i = 0; i<6; i++){
+        homeList[i][1]--;
+        if (homeList[i][1] == 0){
+            homeList.splice(i, 1);
+            i--; 
+        }
+    }
+    await wait(5000);
+  }
+}
+
+app.post('/homepage',async(req,res)=>{
+    console.log("got a homepage post");
+    clubName = req.body;
+    clubs = getClubs
+    
+    for (let i = 0; i<clubs.length; i++){
+        if (clubs[i].name == clubName){
+            homeList.push(club[i])
+        }
+    }
+    
+    res.json({"all":"good"});
+});
+
+frontPageTimer();
 app.listen(3001);
 console.log("Listening on port 3001");

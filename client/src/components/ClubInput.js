@@ -3,21 +3,45 @@ import CheckboxGrid from "./CheckboxGrid";
 import { convertDayToInt } from "../help/DataConversions";
 import { days, tags } from "../help/ListsAndThings";
 import { useState, useEffect } from "react";
+
 //pages and components
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
 
+
+function splitStringByComma(inputString) {
+  // Split the string by commas
+  console.log(inputString);
+  const splitArray = inputString.split(',');
+  
+  // Initialize an empty list to hold pairs
+  const pairs = [];
+
+  // Iterate over the split array by incrementing index by 2
+  for (let i = 0; i < splitArray.length; i += 2) {
+      // Add a [Link, Type] pair to pairs list
+      if (i + 1 < splitArray.length) {
+          pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
+      }
+  }
+  
+  return pairs;
+}
+
+
 let query = {
   clubName: "",
-  meetStart: "",
+  meetStart: "00:00",
+  info: "",
   PM: false,
   meetLength: 0,
   day: [],
   tags: [],
   app: false,
+  links:""
 };
 
-const SearchTab = ({ setClubs }) => {
+const ClubInput = ({}) => {
   const [tagQuery, setTagQuery] = useState([]);
   const [dayQuery, setDayQuery] = useState([]);
   const [appQuery, setAppQuery] = useState(false);
@@ -25,15 +49,19 @@ const SearchTab = ({ setClubs }) => {
     query.day = dayQuery;
     query.tags = tagQuery;
     query.app = appQuery;
+    query.links = splitStringByComma(query.links);
+    console.log(query);
+    
 
-    fetch("http://localhost:3001/clubs?data=" + JSON.stringify(query)).then(
-      (response) => {
-        response.json().then((clubs_response) => {
-          console.log(clubs_response);
-          setClubs(clubs_response);
-        });
-      }
-    );
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(query)
+  };
+
+  fetch('http://localhost:3001/clubs', requestOptions)
+    
     //console.log(query);
   };
 
@@ -44,32 +72,6 @@ const SearchTab = ({ setClubs }) => {
     } else {
       setFunction(tagQuery.filter((item) => item !== e.target.id));
     }
-  };
-
-  const handleClear = async (e) => {
-    query = {
-      clubName: "",
-      meetStart: "",
-      PM: false,
-      meetLength: 0,
-      day: [],
-      tags: [],
-      app: false,
-    };
-
-    const checkboxes = document.querySelectorAll(
-      '.searchtab input[type="checkbox"]'
-    );
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-
-    const textboxes = document.querySelectorAll(
-      '.searchtab input[type="text"]'
-    );
-    textboxes.forEach((textbox) => {
-      textbox.value = "";
-    });
   };
 
   return (
@@ -83,6 +85,16 @@ const SearchTab = ({ setClubs }) => {
             onChange={(e) => (query.clubName = e.target.value)}
           />
         </div>
+
+        <div className="searchElement">
+          <label for="info">Organization Info:</label>
+          <input className="info"
+            type="text"
+            name="info"
+            onChange={(e) => (query.info = e.target.value)}
+          />
+        </div>
+
         <div className="searchElement">
           <CheckboxGrid
             optionList={tags}
@@ -135,10 +147,26 @@ const SearchTab = ({ setClubs }) => {
         </div>
       </form>
 
+      <div className="searchElement">
+          <label for="info">Links:</label>
+          <input className="info"
+            type="text"
+            name="text"
+            onChange={(e) => (query.links = e.target.value)}
+          />
+        </div>
+
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handleClear}>Clear All</button>
     </div>
   );
 };
 
-export default SearchTab;
+export default ClubInput;
+
+
+
+
+
+const inputString = "Instagram, http://insta, Twitter, http://twitter";
+const result = splitStringByComma(inputString);
+
