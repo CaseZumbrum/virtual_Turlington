@@ -84,6 +84,10 @@ body {
   height: 80%;
 }
 
+.club-promotion:hover {
+  background-color: #ffffff;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;

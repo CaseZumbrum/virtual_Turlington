@@ -11,26 +11,16 @@ const App = () => {
 
   return (
     <div className="App">
-      
-      <Link to = "/landingpage">
-      <img style={{width:"100%"}}src="VT_Banner.png"></img>
+
+      <Link className="bannerHeader" to="/landingpage">
+        <img
+          style={{ width: "100%", height: "100px", position: "fixed" }}
+          src="VT_Banner.png"
+          className="bannerHeader"
+        ></img>
       </Link>
+      <div className="flexbox_row">
 
-      <div className="flex-search">
-        <Link to = "/clubsite">
-            <img style={{width:"50px"}} src="Up Arrow.png"></img>
-        </Link>
-
-        <Link to = "/homeRequest">
-            <img style={{width:"50px"}} src="Gold Star.png"></img>
-        </Link>
-
-        <Link to = "/">
-            <img style={{width:"50px"}} src="Magnifying Glass.png"></img>
-        </Link>
-      </div>
-      
-      
         <SearchTab setClubs={setClubs} />
         <div className="flexb-row">
         <div className="clubPromotion">

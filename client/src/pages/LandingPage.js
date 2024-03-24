@@ -25,29 +25,15 @@ const LandingPage = () => {
 
   return (
     <div className="LandingPage">
-      <Link to="/">
-        <img src="VT_Banner.png"></img>
 
+      <Link className="bannerHeader" to="/">
+        <img
+          style={{ width: "100%", height: "100px" }}
+          src="VT_Banner.png"
+          className="bannerHeader"
+        ></img>
       </Link>
 
-      <div className = "button">
-
-      <div className="flex-search">
-        <Link to = "/clubsite">
-            <img style={{width:"50px"}} src="Up Arrow.png"></img>
-        </Link>
-
-        <Link to = "/homeRequest">
-            <img style={{width:"50px"}} src="Gold Star.png"></img>
-        </Link>
-
-        <Link to = "/">
-            <img style={{width:"50px"}} src="Magnifying Glass.png"></img>
-        </Link>
-      </div>
-      </div>
-
-      
 
       <div className="flex-container">
 
