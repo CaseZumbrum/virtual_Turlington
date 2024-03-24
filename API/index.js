@@ -133,6 +133,7 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
 
 async function frontPageTimer(){
   while (true) {
+    if(homeList.length > 6){
     for (let i = 0; i<6; i++){
         homeList[i][1]--;
         if (homeList[i][1] == 0){
@@ -140,18 +141,31 @@ async function frontPageTimer(){
             i--; 
         }
     }
+}
+    else{
+        for (let i = 0; i<homeList.length; i++){
+            homeList[i][1]--;
+            if (homeList[i][1] == 0){
+                homeList.splice(i, 1);
+                i--; 
+            }
+    }
+        console.log(homeList);
+    }
     await wait(5000);
   }
 }
 
 app.post('/homepage',async(req,res)=>{
     console.log("got a homepage post");
-    clubName = req.body;
-    clubs = getClubs
+    clubName = req.body.clubName;
+    
+    let clubs = await getClubs();
     
     for (let i = 0; i<clubs.length; i++){
+        
         if (clubs[i].name == clubName){
-            homeList.push(club[i])
+            homeList.push([clubs[i],10])
         }
     }
     

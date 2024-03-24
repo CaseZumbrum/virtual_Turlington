@@ -29,6 +29,7 @@ function splitStringByComma(inputString) {
 }
 
 
+
 let query = {
   clubName: "",
   meetStart: "00:00",
@@ -165,8 +166,4 @@ export default ClubInput;
 
 
 
-
-
-const inputString = "Instagram, http://insta, Twitter, http://twitter";
-const result = splitStringByComma(inputString);
 
