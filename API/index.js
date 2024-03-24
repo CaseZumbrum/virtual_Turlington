@@ -55,6 +55,8 @@ app.get('/clubs', async(req,res)=>{
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
         command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
     }
+    clubs[clubs.length-1].meetLength = clubs[i].meetLength[0];
+    clubs[clubs.length-1].meetStart = clubs[i].meetStart[0].toString();
     command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
     command += "]\""
     
@@ -93,8 +95,6 @@ app.get('/clubs', async(req,res)=>{
 
 app.post('/clubs',async(req,res)=>{
     await mongoose.connect(process.env.MONGO_API_KEY);
-    conn = mongoose.connection;
-    console.log(req.body);
     input = req.body;
     
     const club = new Club(input);
