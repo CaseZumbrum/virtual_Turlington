@@ -74,6 +74,7 @@ const SearchTab = ({ setClubs }) => {
 
   return (
     <div className="searchtab">
+      <h4>Organization Search</h4>
       <form action="">
         <div className="searchElement">
           <label for="name">Organization Name:</label>
@@ -109,13 +110,15 @@ const SearchTab = ({ setClubs }) => {
           </div>
         </div>
         <div className="searchElement">
-          <label for="maxTime">Max Duration: </label>
-          <input
-            type="text"
-            id="name"
-            name="maxTime"
-            onChange={(e) => (query.meetLength = parseInt(e.target.value))}
-          />
+          <div className="flexbox_row">
+            <label for="maxTime">Max Duration: </label>
+            <input
+              type="text"
+              id="maxDuration"
+              name="maxTime"
+              onChange={(e) => (query.meetLength = parseInt(e.target.value))}
+            />
+          </div>
         </div>
         <div className="searchElement">
           <CheckboxGrid
@@ -134,9 +137,14 @@ const SearchTab = ({ setClubs }) => {
           />
         </div>
       </form>
-
-      <button onClick={handleSubmit}>Submit</button>
-      <button onClick={handleClear}>Clear All</button>
+      <div className="flexbox_row buttons">
+        <button className="submitButton" onClick={handleSubmit}>
+          Submit
+        </button>
+        <button className="clearButton" onClick={handleClear}>
+          Clear All
+        </button>
+      </div>
     </div>
   );
 };
