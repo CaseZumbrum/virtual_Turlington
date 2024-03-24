@@ -3,6 +3,7 @@ const Club = require(".\\Models\\Club");
 const express = require("express");
 const {exec} = require('child_process')
 const cors = require('cors');
+var ObjectID = require('mongodb').ObjectID;
 const app = express();
 
 require("dotenv").config();
@@ -89,5 +90,19 @@ app.get('/clubs', async(req,res)=>{
    
     
 });
+
+app.post('/clubs',async(req,res)=>{
+    await mongoose.connect(process.env.MONGO_API_KEY);
+    conn = mongoose.connection;
+    console.log(req.body);
+    input = req.body;
+    
+    const club = new Club(input);
+    await club.save();
+    
+    res.json({"all":"good"});
+    mongoose.disconnect();
+});
+
 app.listen(3001);
 console.log("Listening on port 3001");
