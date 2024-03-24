@@ -29,7 +29,7 @@ const SearchTab = ({ setClubs }) => {
     fetch("http://localhost:3001/clubs?data=" + JSON.stringify(query)).then(
       (response) => {
         response.json().then((clubs_response) => {
-          //console.log(clubs);
+          console.log(clubs_response);
           setClubs(clubs_response);
         });
       }
@@ -44,6 +44,32 @@ const SearchTab = ({ setClubs }) => {
     } else {
       setFunction(tagQuery.filter((item) => item !== e.target.id));
     }
+  };
+
+  const handleClear = async (e) => {
+    query = {
+      clubName: "",
+      meetStart: "",
+      PM: false,
+      meetLength: 0,
+      day: [],
+      tags: [],
+      app: false,
+    };
+
+    const checkboxes = document.querySelectorAll(
+      '.searchtab input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    const textboxes = document.querySelectorAll(
+      '.searchtab input[type="text"]'
+    );
+    textboxes.forEach((textbox) => {
+      textbox.value = "";
+    });
   };
 
   return (
@@ -110,6 +136,7 @@ const SearchTab = ({ setClubs }) => {
       </form>
 
       <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleClear}>Clear All</button>
     </div>
   );
 };
