@@ -120,20 +120,44 @@ app.post('/clubs',async(req,res)=>{
 });
 
 
+
 let homeList = [];
 app.get('/homepage',async(req,res)=>{
-    
+    let newList = []
+    for (let i = 0; i<6; i++){
+        newList.push(homeList[i][0])
+    }
 });
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 async function frontPageTimer(){
   while (true) {
-    console.log("test")
-    
+    for (let i = 0; i<6; i++){
+        homeList[i][1]--;
+        if (homeList[i][1] == 0){
+            homeList.splice(i, 1);
+            i--; 
+        }
+    }
     await wait(5000);
   }
 }
+
+app.post('/homepage',async(req,res)=>{
+    console.log("got a homepage post");
+    clubName = req.body;
+    clubs = getClubs
+    
+    for (let i = 0; i<clubs.length; i++){
+        if (clubs[i].name == clubName){
+            homeList.push(club[i])
+        }
+    }
+    
+    res.json({"all":"good"});
+});
+
 frontPageTimer();
 app.listen(3001);
 console.log("Listening on port 3001");
