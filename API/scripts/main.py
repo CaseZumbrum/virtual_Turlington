@@ -30,10 +30,7 @@ def nameFilter(clubs, userName):
     matched_clubs = []
     for club in clubs:
         ratio = fuzz.ratio(club.name.lower(), userName.lower())
-        if ratio >= 90:
-            club.score += 10 # Give a bunch of points to make it high up
-        else:
-            club.score += ratio /20  # Increase the score based on ratio
+        club.score += (ratio*ratio) /1000  # Increase the score based on ratio, have it scale based on ratio percent
         if ratio >= 50:
             matched_clubs.append(club)
     return matched_clubs
