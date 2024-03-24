@@ -90,4 +90,4 @@ app.get('/clubs', async(req,res)=>{
     
 });
 app.listen(3001);
-console.log("WE HERE BITCHES");
+console.log("Listening on port 3001");
