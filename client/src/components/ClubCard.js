@@ -1,57 +1,38 @@
+import { convertIntToDay } from "../help/DataConversions";
+
 const ClubCard = ({ club }) => {
   const createCommaSeparatedList = (array) => {
     let names = array.join(", ");
     return <p>{names}</p>;
   };
 
-  const convertIntToDay = (n) => {
-    switch (n) {
-      case 0:
-        return "Monday";
-      case 1:
-        return "Tuesday";
-      case 2:
-        return "Wednesday";
-      case 3:
-        return "Thursday";
-      case 4:
-        return "Friday";
-      case 5:
-        return "Saturday";
-      case 6:
-        return "Sunday";
-      default:
-        return "Invalid day";
-    }
-  };
-
   return (
     <div className="club-card">
       <h1>{club.name}</h1>
       <p>
-        <strong>Tags:</strong>
-        {createCommaSeparatedList(club.tags)}
+        <strong>Tags: </strong>
+        {club.tags.join(", ")}
       </p>
       <p>{club.info}</p>
       {club.PM ? (
         <p>
-          <strong>Starting Time:</strong> {club.meetStart} PM
+          <strong>Starting Time: </strong> {club.meetStart} PM
         </p>
       ) : (
         <p>
-          <strong>Starting Time:</strong> {club.meetStart} AM
+          <strong>Starting Time: </strong> {club.meetStart} AM
         </p>
       )}
 
       <p>
-        <strong>Duration:</strong> {club.meetLength} min.
+        <strong>Duration: </strong> {club.meetLength} min.
       </p>
       <p>
-        <strong>Meeting Days:</strong>
-        {/* createCommaSeparatedList(club.days) */}
+        <strong>Meeting Days: </strong>
+        {club.day.map((d) => convertIntToDay(d)).join(", ")}
       </p>
       <p>
-        <strong>Links:</strong>
+        <strong>Links: </strong>
         {club.links.map((link, index) => (
           <li key={index}>
             <a href={link}>link text LOL</a>

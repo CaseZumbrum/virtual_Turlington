@@ -1,9 +1,15 @@
 html,
 body {
+  margin: 0px;
   font-family: "Poppins";
   height: 10000;
 }
 
+.Navbar {
+  height: 100px;
+  width: 1700px;
+  background-color: red;
+}
 .flexbox_row {
   display: flex;
 }
