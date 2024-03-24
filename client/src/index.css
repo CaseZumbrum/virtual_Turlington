@@ -62,19 +62,24 @@ body {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.club-promotion{
+.club-promotion {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #f5f5f5;
   border-radius: 4px;
   width: 400px;
-  height: 290px;
-  margin: 5px ;
+  height: auto;
+  margin: 5px;
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
   row-gap: 10px;
+}
+
+.club-promotion.false {
+  width: 90%;
+  height: 80%;
 }
 
 .flex-container {
@@ -104,7 +109,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   flex: 0 0 100%;
   border-bottom: 1px solid #08092a;
-
 }
 
 .body {
@@ -116,6 +120,6 @@ body {
 
 .subBox {
   width: 180px;
-  height: 50px;
+  height: auto;
   padding: 5px;
 }

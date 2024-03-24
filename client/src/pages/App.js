@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchTab from "../components/SearchTab";
-import ClubCard from "../components/ClubCard";
+import ClubPromotion from "../components/ClubPromotion";
 import { testClub } from "../help/ListsAndThings";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ const App = () => {
         <SearchTab setClubs={setClubs} />
         <div className="clubCards">
           {clubs.map((club, index) => (
-            <ClubCard club={club} />
+            <ClubPromotion club={club} isPromotion={"false"} />
           ))}
         </div>
       </div>
