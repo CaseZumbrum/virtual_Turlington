@@ -8,6 +8,27 @@ import { useState, useEffect } from "react";
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
 
+
+function splitStringByComma(inputString) {
+  // Split the string by commas
+  console.log(inputString);
+  const splitArray = inputString.split(',');
+  
+  // Initialize an empty list to hold pairs
+  const pairs = [];
+
+  // Iterate over the split array by incrementing index by 2
+  for (let i = 0; i < splitArray.length; i += 2) {
+      // Add a [Link, Type] pair to pairs list
+      if (i + 1 < splitArray.length) {
+          pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
+      }
+  }
+  
+  return pairs;
+}
+
+
 let query = {
   clubName: "",
   meetStart: "",
@@ -17,6 +38,7 @@ let query = {
   day: [],
   tags: [],
   app: false,
+  links:""
 };
 
 const ClubInput = ({}) => {
@@ -27,7 +49,11 @@ const ClubInput = ({}) => {
     query.day = dayQuery;
     query.tags = tagQuery;
     query.app = appQuery;
+    query.links = splitStringByComma(query.links);
     console.log(query);
+    
+
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -121,6 +147,15 @@ const ClubInput = ({}) => {
         </div>
       </form>
 
+      <div className="searchElement">
+          <label for="info">Links:</label>
+          <input className="info"
+            type="text"
+            name="text"
+            onChange={(e) => (query.links = e.target.value)}
+          />
+        </div>
+
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
@@ -129,23 +164,8 @@ const ClubInput = ({}) => {
 export default ClubInput;
 
 
-function splitStringByComma(inputString) {
-  // Split the string by commas
-  const splitArray = inputString.split(',');
-  
-  // Initialize an empty list to hold pairs
-  const pairs = [];
 
-  // Iterate over the split array by incrementing index by 2
-  for (let i = 0; i < splitArray.length; i += 2) {
-      // Add a [Link, Type] pair to pairs list
-      if (i + 1 < splitArray.length) {
-          pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
-      }
-  }
-  
-  return pairs;
-}
+
 
 const inputString = "Instagram, http://insta, Twitter, http://twitter";
 const result = splitStringByComma(inputString);
