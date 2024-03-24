@@ -1,11 +1,11 @@
 Virtual Turlington is a Space for UF Clubs to share events and information!
 
 DEPENDENCIES:
-thefuzz (pip)
-cors (npm)
-react (npm)
-express (npm)
-mongoose (npm)
+thefuzz (pip),
+cors (npm),
+react (npm),
+express (npm),
+mongoose (npm),
 react-router-dom (npm)
 
 
