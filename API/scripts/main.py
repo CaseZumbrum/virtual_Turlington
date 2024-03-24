@@ -4,16 +4,17 @@ from thefuzz import fuzz
 
 
 class Club:
-    def __init__(self, name, tags, meetStart, meetLength, day, app):
+    def __init__(self, name, tags, meetStart, meetLength, day, app,links):
         self.name = name
         self.tags = tags
         self.meetStart = meetStart
         self.meetLength = meetLength
         self.day = day
         self.app = app
+        self.links = links
 
     def print(self):
-        print("{" f"\\\"name\\\":\\\"{self.name}\\\", \\\"tags\\\":{self.tags}, \\\"meetStart\\\":{self.meetStart}, \\\"meetLength\\\":{self.meetLength}, \\\"day\\\":{self.day}, \\\"app\\\":{self.app}" + "}", end="")
+        print("{" f"\\\"name\\\":\\\"{self.name}\\\", \\\"tags\\\":{self.tags}, \\\"meetStart\\\":{self.meetStart}, \\\"meetLength\\\":{self.meetLength}, \\\"day\\\":{self.day}, \\\"app\\\":{self.app}, \\\"links\\\":{self.links}" + "}", end="")
 
 class User:
     def __init__(self, clubName, tags, meetStart, meetLength, day, app):
@@ -125,7 +126,8 @@ def main():
             club_info['meetStart'],
             club_info['meetLength'],
             club_info['day'],
-            club_info['app'])
+            club_info['app'],
+            club_info['links'])
         club.score = 0.0
         clubs.append(club)
 

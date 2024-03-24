@@ -8,7 +8,7 @@ const ClubSchema = new Schema({
   meetLength:Array,
   day:Array,
   freq:Number,
-  links:Array,
+  links: { type: Array, default: [] },
   tags:Array,
   app:Boolean,
   interactions:Number

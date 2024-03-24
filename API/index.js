@@ -43,21 +43,21 @@ app.get('/clubs', async(req,res)=>{
     let clubs = await getClubs();
     
     let input = JSON.parse(req.query.data);
-    console.log(input);
+    
     input.meetStart = timeToInt(input);
+    
     
     let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
     
     for(let i = 0; i< clubs.length-1; i++){
         clubs[i].meetLength = clubs[i].meetLength[0];
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
-
         command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
     }
     command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
     command += "]\""
     
-    console.log(command);
+    
     //console.log(command);
     exec(command, (err, output) => {
         if(err){
@@ -77,7 +77,10 @@ app.get('/clubs', async(req,res)=>{
             }
             
             sorted_Clubs[i].meetStart = intTimetoTime(sorted_Clubs[i].meetStart);
-            
+            for(let j = 0; i < sorted_Clubs[i].links.length; i++){
+                sorted_Clubs[i].links[j] = JSON.parse("{\"Site\":\"" + sorted_Clubs[i].links[j][0] + "\",\"Link\":\"" + sorted_Clubs[i].links[j][1] + "\"}");
+            }
+           
         }
         
         res.json(sorted_Clubs);
