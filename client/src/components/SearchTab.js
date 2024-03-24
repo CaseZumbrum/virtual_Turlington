@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import CheckboxGrid from "./CheckboxGrid";
 import { convertDayToInt } from "../help/DataConversions";
 import { days, tags } from "../help/ListsAndThings";
 import { useState, useEffect } from "react";
+
 //pages and components
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
@@ -74,6 +75,27 @@ const SearchTab = ({ setClubs }) => {
 
   return (
     <div className="searchtab">
+      <div className="flexbox_row navbuttons">
+        <Link to="/clubsite" style={{ flex: "1" }}>
+          <img
+            style={{ width: "25px", height: "25px", margin: "0px 0px 0px 33%" }}
+            src="Up_Arrow.png"
+          ></img>
+        </Link>
+        <Link to="/homeRequest" style={{ flex: "1" }}>
+          <img
+            style={{ width: "25px", height: "25px", margin: "0px 0px 0px 33%" }}
+            src="Gold_Star.png"
+          ></img>
+        </Link>
+        <Link to="/" style={{ flex: "1" }}>
+          <img
+            style={{ width: "25px", height: "25px", margin: "0px 0px 0px 33%" }}
+            src="Magnifying_Glass.png"
+          ></img>
+        </Link>
+      </div>
+
       <h4>Organization Search</h4>
       <form action="">
         <div className="searchElement">

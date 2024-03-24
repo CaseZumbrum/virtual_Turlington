@@ -9,12 +9,14 @@ import RequestHomePage from "../components/RequestHomePage";
 const ClubSite = () => {
   return (
     <div>
-      <Link to="/">
-      <img src="VT_Banner.png"></img>
+      <Link className="bannerHeader" to="/landingpage">
+        <img
+          className="bannerHeader"
+          style={{ width: "100%", height: "100px", position: "fixed" }}
+          src="VT_Banner.png"
+        ></img>
       </Link>
-        <ClubInput />
-        
-      
+      <ClubInput />
     </div>
   );
 };

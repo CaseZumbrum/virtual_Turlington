@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SearchTab from "../components/SearchTab";
 import ClubPromotion from "../components/ClubPromotion";
 import { testClub } from "../help/ListsAndThings";
@@ -9,7 +9,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="Navbar">Hello</div>
+      <Link className="bannerHeader" to="/landingpage">
+        <img
+          style={{ width: "100%", height: "100px", position: "fixed" }}
+          src="VT_Banner.png"
+          className="bannerHeader"
+        ></img>
+      </Link>
       <div className="flexbox_row">
         <SearchTab setClubs={setClubs} />
         <div className="clubCards">

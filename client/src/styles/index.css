@@ -2,7 +2,7 @@
 
 :root {
   height: 100%;
-  background-color: pink;
+  background-color: #fff5d1;
 }
 
 html,
@@ -22,4 +22,13 @@ body {
 .flexbox_row {
   display: flex;
   align-items: stretch;
+}
+
+.flexbox_row.navbuttons {
+  background-color: rgb(170, 170, 170);
+  border-radius: 8px;
+}
+
+.bannerHeader {
+  z-index: 1000;
 }

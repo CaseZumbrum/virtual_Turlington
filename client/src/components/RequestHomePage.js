@@ -28,22 +28,61 @@ const RequestHomePage = ({}) => {
   };
 
   return (
-    <div className="searchtab">
-      <Link to="/">
-        <img src="VT_Banner.png"></img>
+    <div>
+      <Link to="/landingpage" className="bannerHeader">
+        <img
+          style={{ width: "100%", height: "100px", position: "fixed" }}
+          src="VT_Banner.png"
+          className="bannerHeader"
+        ></img>
       </Link>
+      <div className="searchtab">
+        <div className="flexbox_row navbuttons">
+          <Link to="/clubsite" style={{ flex: "1" }}>
+            <img
+              style={{
+                width: "25px",
+                height: "25px",
+                margin: "0px 0px 0px 33%",
+              }}
+              src="Up_Arrow.png"
+            ></img>
+          </Link>
+          <Link to="/homeRequest" style={{ flex: "1" }}>
+            <img
+              style={{
+                width: "25px",
+                height: "25px",
+                margin: "0px 0px 0px 33%",
+              }}
+              src="Gold_Star.png"
+            ></img>
+          </Link>
+          <Link to="/" style={{ flex: "1" }}>
+            <img
+              style={{
+                width: "25px",
+                height: "25px",
+                margin: "0px 0px 0px 33%",
+              }}
+              src="Magnifying_Glass.png"
+            ></img>
+          </Link>
+        </div>
+        <div className="searchElement">
+          <label for="info">Club Name:</label>
+          <input
+            className="name"
+            type="text"
+            name="name"
+            onChange={(e) => (query.clubName = e.target.value)}
+          />
+        </div>
 
-      <div className="searchElement">
-        <label for="info">Links:</label>
-        <input
-          className="name"
-          type="text"
-          name="name"
-          onChange={(e) => (query.clubName = e.target.value)}
-        />
+        <button className="submitButton" onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
-
-      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

@@ -21,9 +21,14 @@ const LandingPage = () => {
 
   return (
     <div className="LandingPage">
-      <Link to="/">
-        <img src="VT_Banner.png"></img>
+      <Link className="bannerHeader" to="/">
+        <img
+          style={{ width: "100%", height: "100px" }}
+          src="VT_Banner.png"
+          className="bannerHeader"
+        ></img>
       </Link>
+
       <div className="flex-container">
         {clubs.map((club, index) => (
           <ClubPromotion club={club} isPromotion={"true"} />
