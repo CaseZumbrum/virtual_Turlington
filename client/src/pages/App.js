@@ -35,7 +35,9 @@ const App = () => {
         <div className="flexb-row">
         <div className="clubPromotion">
           {clubs.map((club, index) => (
-            <ClubPromotion club={club} />
+
+            <ClubPromotion club={club} isPromotion={"false"} />
+
           ))}
         </div>
       </div>

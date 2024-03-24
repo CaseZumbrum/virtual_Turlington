@@ -8,27 +8,24 @@ import { useState, useEffect } from "react";
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
 
-
 function splitStringByComma(inputString) {
   // Split the string by commas
   console.log(inputString);
-  const splitArray = inputString.split(',');
-  
+  const splitArray = inputString.split(",");
+
   // Initialize an empty list to hold pairs
   const pairs = [];
 
   // Iterate over the split array by incrementing index by 2
   for (let i = 0; i < splitArray.length; i += 2) {
-      // Add a [Link, Type] pair to pairs list
-      if (i + 1 < splitArray.length) {
-          pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
-      }
+    // Add a [Link, Type] pair to pairs list
+    if (i + 1 < splitArray.length) {
+      pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
+    }
   }
-  
+
   return pairs;
 }
-
-
 
 let query = {
   clubName: "",
@@ -39,7 +36,7 @@ let query = {
   day: [],
   tags: [],
   app: false,
-  links:""
+  links: "",
 };
 
 const ClubInput = ({}) => {
@@ -52,17 +49,15 @@ const ClubInput = ({}) => {
     query.app = appQuery;
     query.links = splitStringByComma(query.links);
     console.log(query);
-    
-
 
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(query)
-  };
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(query),
+    };
 
-  fetch('http://localhost:3001/clubs', requestOptions)
-    
+    fetch("http://localhost:3001/clubs", requestOptions);
+
     //console.log(query);
   };
 
@@ -89,7 +84,8 @@ const ClubInput = ({}) => {
 
         <div className="searchElement">
           <label for="info">Organization Info:</label>
-          <input className="info"
+          <input
+            className="info"
             type="text"
             name="info"
             onChange={(e) => (query.info = e.target.value)}
@@ -149,13 +145,14 @@ const ClubInput = ({}) => {
       </form>
 
       <div className="searchElement">
-          <label for="info">Links:</label>
-          <input className="info"
-            type="text"
-            name="text"
-            onChange={(e) => (query.links = e.target.value)}
-          />
-        </div>
+        <label for="info">Links:</label>
+        <input
+          className="info"
+          type="text"
+          name="text"
+          onChange={(e) => (query.links = e.target.value)}
+        />
+      </div>
 
       <button onClick={handleSubmit}>Submit</button>
     </div>
@@ -163,7 +160,3 @@ const ClubInput = ({}) => {
 };
 
 export default ClubInput;
-
-
-
-
