@@ -3,12 +3,15 @@ import SearchTab from "../components/SearchTab";
 import ClubPromotion from "../components/ClubPromotion";
 import { testClub } from "../help/ListsAndThings";
 import { useState } from "react";
+import button from "../styles/button.css";
+
 
 const App = () => {
   const [clubs, setClubs] = useState([]);
 
   return (
     <div className="App">
+
       <Link className="bannerHeader" to="/landingpage">
         <img
           style={{ width: "100%", height: "100px", position: "fixed" }}
@@ -17,10 +20,14 @@ const App = () => {
         ></img>
       </Link>
       <div className="flexbox_row">
+
         <SearchTab setClubs={setClubs} />
-        <div className="clubCards">
+        <div className="flexb-row">
+        <div className="clubPromotion">
           {clubs.map((club, index) => (
+
             <ClubPromotion club={club} isPromotion={"false"} />
+
           ))}
         </div>
       </div>

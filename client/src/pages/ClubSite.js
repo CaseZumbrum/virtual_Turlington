@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ClubInput from "../components/ClubInput";
 import RequestHomePage from "../components/RequestHomePage";
+import button from "../styles/button.css";
+
 
 //pages and components
 //import Home from "./pages/Home";
@@ -9,6 +11,7 @@ import RequestHomePage from "../components/RequestHomePage";
 const ClubSite = () => {
   return (
     <div>
+
       <Link className="bannerHeader" to="/landingpage">
         <img
           className="bannerHeader"
@@ -17,6 +20,7 @@ const ClubSite = () => {
         ></img>
       </Link>
       <ClubInput />
+
     </div>
   );
 };

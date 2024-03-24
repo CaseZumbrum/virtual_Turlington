@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import CheckboxGrid from "./CheckboxGrid";
 import { convertDayToInt } from "../help/DataConversions";
 import { days, tags } from "../help/ListsAndThings";
+import button from "../styles/button.css";
 import { useState, useEffect } from "react";
 
 //pages and components
@@ -29,12 +30,14 @@ const RequestHomePage = ({}) => {
 
   return (
     <div>
+
       <Link to="/landingpage" className="bannerHeader">
         <img
           style={{ width: "100%", height: "100px", position: "fixed" }}
           src="VT_Banner.png"
           className="bannerHeader"
         ></img>
+
       </Link>
       <div className="searchtab">
         <div className="flexbox_row navbuttons">
@@ -79,11 +82,13 @@ const RequestHomePage = ({}) => {
           />
         </div>
 
+
         <button className="submitButton" onClick={handleSubmit}>
           Submit
         </button>
       </div>
     </div>
+
   );
 };
 

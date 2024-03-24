@@ -2,7 +2,9 @@
 
 :root {
   height: 100%;
+
   background-color: #fff5d1;
+
 }
 
 html,
@@ -22,6 +24,7 @@ body {
 .flexbox_row {
   display: flex;
   align-items: stretch;
+  margin:0px;
 }
 
 .flexbox_row.navbuttons {
