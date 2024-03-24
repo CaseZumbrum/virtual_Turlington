@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckboxGrid from "./CheckboxGrid";
-import { useState } from "react";
+import { useState ,uesEffect} from "react";
 //pages and components
 //import Home from "./pages/Home";
 //import Navbar from "./components/Navbar";
@@ -32,11 +32,10 @@ const days = [
 ];
 
 let query = {
-  name: "",
-  time: "",
+  clubName: "",
   meetStart: "",
-  pm: false,
-  meetLength: "",
+  PM: false,
+  meetLength: 0,
   day: [],
   tags: [],
   app: false,
@@ -46,11 +45,20 @@ const SearchTab = () => {
   const [tagQuery, setTagQuery] = useState([]);
   const [dayQuery, setDayQuery] = useState([]);
   const [appQuery, setAppQuery] = useState(false);
+  const [clubs,setClubs] = useState([]);
   const handleSubmit = (e) => {
+
     query.day = dayQuery;
     query.tags = tagQuery;
     query.app = appQuery;
+    
+    fetch("http://localhost:3001/clubs?data=" + JSON.stringify(query)).then(response=>{
 
+      response.json().then(clubs => {
+        console.log(clubs);
+        setClubs(clubs);
+      });
+    });
     console.log(query);
   };
 
@@ -71,7 +79,7 @@ const SearchTab = () => {
           <input
             type="text"
             name="name"
-            onChange={(e) => (query.name = e.target.value)}
+            onChange={(e) => (query.clubName = e.target.value)}
           />
         </div>
         <div className="searchElement">
@@ -105,7 +113,7 @@ const SearchTab = () => {
             type="text"
             id="name"
             name="maxTime"
-            onChange={(e) => (query.meetLength = e.target.value)}
+            onChange={(e) => (query.meetLength = parseInt(e.target.value))}
           />
         </div>
         <div className="searchElement">
