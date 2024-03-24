@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="Navbar">Hello</div>
+      <div className="Navbar"></div>
       <div className="flexbox_row">
         <SearchTab setClubs={setClubs} />
         <div className="clubCards">

@@ -1,0 +1,15 @@
+.club-card {
+  background: #fff;
+  border-radius: 4px;
+  margin: 10px 5px 10px 20%;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.clubCards {
+  margin-top: 100px;
+  margin-left: 10px;
+  flex: 4;
+  z-index: 100;
+}

@@ -1,6 +1,5 @@
 export const tags = [
   "Social",
-  "Professional Development",
   "STEM",
   "Arts",
   "Performance",
@@ -10,6 +9,7 @@ export const tags = [
   "Religious",
   "Engineering",
   "Business",
+  "Professional Development",
   "Environmental",
 ];
 

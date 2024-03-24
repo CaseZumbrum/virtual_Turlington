@@ -10,8 +10,10 @@ const CheckboxGrid = (props) => {
       <div className="checkboxGrid">
         {props.optionList.map((tag, index) => (
           <div key={index} className="tag">
-            <label>{tag}</label>
-            <input id={tag} type="checkbox" onChange={props.onChange} />
+            <div className="flexbox_row">
+              <p className="cbGridText">{tag}</p>
+              <input id={tag} type="checkbox" onChange={props.onChange} />
+            </div>
           </div>
         ))}
       </div>
