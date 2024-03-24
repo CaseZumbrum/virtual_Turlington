@@ -68,7 +68,7 @@ def lengthFilter(clubs, userLength):
     matched_clubs = []
     for club in clubs:
         for club_len in club.meetLength:
-            ratio = club_len / userLength # Create a ratio between user Max and the club meeting time
+            ratio = club_len / userLength[0] # Create a ratio between user Max and the club meeting time
             if ratio <= 1: # If club meeting is less than user Max
                 club.score += ratio * 2 # Add appopriate, weighs less than name/tag but more than other
                 matched_clubs.append(club)
@@ -112,18 +112,19 @@ def main():
 
     # Take in user data and make a user
     fileInfo = []
-    file = open("clubs.txt", "r")
+    file = open("scripts/clubs.txt", "r")
     file_contents = file.read()
 
     end_index = file_contents.find('}')
 
     # Slice the string accordingly
-    user = file_contents[0: end_index]
-    club = file_contents[end_index + 1:]
+    user = file_contents[0: end_index+1]
+    club = file_contents[end_index + 2:]
 
     # Append the sliced strings to the list
     fileInfo.append(user)
     fileInfo.append(club)
+  
 
 
 

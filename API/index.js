@@ -5,6 +5,7 @@ const {exec} = require('child_process')
 const cors = require('cors');
 var ObjectID = require('mongodb').ObjectID;
 const app = express();
+const fs = require('node:fs');
 
 require("dotenv").config();
 
@@ -48,21 +49,30 @@ app.get('/clubs', async(req,res)=>{
     input.meetStart = timeToInt(input);
     
     
-    let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
-    
+    //let command = "python scripts\\main.py \""  + JSON.stringify(input).replaceAll("\"","\\\"") + "\" \"[";
+    let command = ""  + JSON.stringify(input).replaceAll("\"","\"") + " [";
     for(let i = 0; i< clubs.length-1; i++){
         clubs[i].meetLength = clubs[i].meetLength[0];
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
-        command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
+        command += JSON.stringify(clubs[i]).replaceAll("\"","\"") + ", ";
     }
     clubs[clubs.length-1].meetLength = clubs[clubs.length-1].meetLength[0];
     clubs[clubs.length-1].meetStart = clubs[clubs.length-1].meetStart[0].toString();
-    command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
-    command += "]\""
+    command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\"")
+    command += "]"
+    //console.log(command)
     
     
+
+    
+    fs.writeFile('scripts/clubs.txt', command, err => {
+      if (err) {
+        console.error(err);
+      }
+    });
+
     //console.log(command);
-    exec(command, (err, output) => {
+    exec("python scripts/main.py", (err, output) => {
         if(err){
            // console.log(output);
         }
