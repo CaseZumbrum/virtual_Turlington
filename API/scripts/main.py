@@ -111,8 +111,24 @@ def bestFilter(tagMatch, timeMatch, dayMatch, lengthMatch, appMatch, clubs):
 def main():
 
     # Take in user data and make a user
-    
-    userData = json.loads(sys.argv[1])
+    fileInfo = []
+    file = open("clubs.txt", "r")
+    file_contents = file.read()
+
+    end_index = file_contents.find('}')
+
+    # Slice the string accordingly
+    user = file_contents[0: end_index]
+    club = file_contents[end_index + 1:]
+
+    # Append the sliced strings to the list
+    fileInfo.append(user)
+    fileInfo.append(club)
+
+
+
+
+    userData = json.loads(fileInfo[0])
     user = User(
         userData['clubName'],
         userData['tags'],
@@ -123,7 +139,7 @@ def main():
     )
 
     # Take in club data, add club to list of clubs
-    clubData = json.loads(sys.argv[2])
+    clubData = json.loads(fileInfo[1])
     clubs = []
     for club_info in clubData:
         club = Club(
