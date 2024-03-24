@@ -124,9 +124,17 @@ app.post('/clubs',async(req,res)=>{
 let homeList = [];
 app.get('/homepage',async(req,res)=>{
     let newList = []
+    if(homeList.length > 6){
     for (let i = 0; i<6; i++){
         newList.push(homeList[i][0])
     }
+}
+else{
+    for (let i = 0; i<homeList.length; i++){
+        newList.push(homeList[i][0])
+    }
+}
+res.json(newList);
 });
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
