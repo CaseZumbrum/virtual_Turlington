@@ -45,7 +45,9 @@ app.get('/clubs', async(req,res)=>{
     let clubs = await getClubs();
     
     let input = JSON.parse(req.query.data);
-    
+    if(input.meetStart == ""){
+        input.meetStart = "00:00"
+    }
     input.meetStart = timeToInt(input);
     
     
@@ -116,6 +118,8 @@ app.post('/clubs',async(req,res)=>{
     res.json({"all":"good"});
     mongoose.disconnect();
 });
+
+app
 
 app.listen(3001);
 console.log("Listening on port 3001");

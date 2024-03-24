@@ -31,7 +31,7 @@ function splitStringByComma(inputString) {
 
 let query = {
   clubName: "",
-  meetStart: "",
+  meetStart: "00:00",
   info: "",
   PM: false,
   meetLength: 0,

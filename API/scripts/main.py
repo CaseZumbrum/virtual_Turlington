@@ -68,11 +68,12 @@ def lengthFilter(clubs, userLength):
     matched_clubs = []
     for club in clubs:
         for club_len in club.meetLength:
-            ratio = club_len / userLength[0] # Create a ratio between user Max and the club meeting time
-            if ratio <= 1: # If club meeting is less than user Max
-                club.score += ratio * 2 # Add appopriate, weighs less than name/tag but more than other
-                matched_clubs.append(club)
-                break
+            if(userLength[0] != 0):
+                ratio = club_len / userLength[0] # Create a ratio between user Max and the club meeting time
+                if ratio <= 1: # If club meeting is less than user Max
+                    club.score += ratio * 2 # Add appopriate, weighs less than name/tag but more than other
+                    matched_clubs.append(club)
+                    break
     return matched_clubs
 
 
