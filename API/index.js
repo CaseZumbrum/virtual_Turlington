@@ -55,8 +55,8 @@ app.get('/clubs', async(req,res)=>{
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
         command += JSON.stringify(clubs[i]).replaceAll("\"","\\\"") + ", ";
     }
-    clubs[clubs.length-1].meetLength = clubs[i].meetLength[0];
-    clubs[clubs.length-1].meetStart = clubs[i].meetStart[0].toString();
+    clubs[clubs.length-1].meetLength = clubs[clubs.length-1].meetLength[0];
+    clubs[clubs.length-1].meetStart = clubs[clubs.length-1].meetStart[0].toString();
     command += JSON.stringify(clubs[clubs.length-1]).replaceAll("\"","\\\"")
     command += "]\""
     
