@@ -119,7 +119,21 @@ app.post('/clubs',async(req,res)=>{
     mongoose.disconnect();
 });
 
-app
 
+let homeList = [];
+app.get('/homepage',async(req,res)=>{
+    
+});
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+async function frontPageTimer(){
+  while (true) {
+    console.log("test")
+    
+    await wait(5000);
+  }
+}
+frontPageTimer();
 app.listen(3001);
 console.log("Listening on port 3001");
