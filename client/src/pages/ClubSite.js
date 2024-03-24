@@ -10,7 +10,7 @@ const App = () => {
     <div className="App">
       <div className="main_container">
         <SearchTab />
-        <div className="clubCards">Hi</div>
+        <div className="clubCards">Poop exam, Thursday</div>
       </div>
     </div>
   );

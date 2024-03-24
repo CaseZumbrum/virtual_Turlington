@@ -7,7 +7,6 @@ import { useState ,uesEffect} from "react";
 
 const tags = [
   "Social",
-  "Fun",
   "Professional Development",
   "STEM",
   "Arts",

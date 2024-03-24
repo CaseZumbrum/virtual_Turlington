@@ -7,6 +7,7 @@ body {
 .flexbox_row {
   display: flex;
 }
+
 .searchtab {
   width: 15%;
   background-color: yellow;
@@ -44,4 +45,13 @@ body {
 .checkboxGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+}
+
+.club-card {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
