@@ -127,3 +127,26 @@ const ClubInput = ({}) => {
 };
 
 export default ClubInput;
+
+
+function splitStringByComma(inputString) {
+  // Split the string by commas
+  const splitArray = inputString.split(',');
+  
+  // Initialize an empty list to hold pairs
+  const pairs = [];
+
+  // Iterate over the split array by incrementing index by 2
+  for (let i = 0; i < splitArray.length; i += 2) {
+      // Add a [Link, Type] pair to pairs list
+      if (i + 1 < splitArray.length) {
+          pairs.push([splitArray[i].trim(), splitArray[i + 1].trim()]);
+      }
+  }
+  
+  return pairs;
+}
+
+const inputString = "Instagram, http://insta, Twitter, http://twitter";
+const result = splitStringByComma(inputString);
+
