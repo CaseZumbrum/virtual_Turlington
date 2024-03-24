@@ -16,19 +16,18 @@ const LandingPage = () => {
   const [clubs, setClubs] = useState([]);
 
 
-  fetch("http://localhost:3001/homepage").then(
-      (response) => {
-        response.json().then((clubs_response) => {
-          console.log(clubs_response);
-          setClubs(clubs_response);
-        });
-      }
-    );
+  fetch("http://localhost:3001/homepage").then((response) => {
+    response.json().then((clubs_response) => {
+      console.log(clubs_response);
+      setClubs(clubs_response);
+    });
+  });
 
   return (
     <div className="LandingPage">
-    <Link to = "/landingpage">
-      <img style={{width:"100%"}} src="VT_Banner.png"></img>
+      <Link to="/">
+        <img src="VT_Banner.png"></img>
+
       </Link>
 
       <div className = "button">
@@ -47,12 +46,15 @@ const LandingPage = () => {
         </Link>
       </div>
       </div>
+
       
 
       <div className="flex-container">
-      {clubs.map((club, index) => (
-            <ClubPromotion club={club} />
-          ))}
+
+        {clubs.map((club, index) => (
+          <ClubPromotion club={club} isPromotion={"true"} />
+        ))}
+
       </div>
     </div>
   );
