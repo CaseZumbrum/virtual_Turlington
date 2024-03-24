@@ -78,7 +78,7 @@ app.get('/clubs', async(req,res)=>{
             }
             
             sorted_Clubs[i].meetStart = intTimetoTime(sorted_Clubs[i].meetStart);
-            for(let j = 0; i < sorted_Clubs[i].links.length; i++){
+            for(let j = 0; j < sorted_Clubs[i].links.length; j++){
                 sorted_Clubs[i].links[j] = JSON.parse("{\"Site\":\"" + sorted_Clubs[i].links[j][0] + "\",\"Link\":\"" + sorted_Clubs[i].links[j][1] + "\"}");
             }
            
