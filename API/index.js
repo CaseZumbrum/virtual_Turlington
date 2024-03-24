@@ -94,9 +94,12 @@ app.get('/clubs', async(req,res)=>{
 });
 
 app.post('/clubs',async(req,res)=>{
+    console.log("got a post");
     await mongoose.connect(process.env.MONGO_API_KEY);
     input = req.body;
-    
+    input.meetLength = [input.meetLength];
+    input.meetTime = [input.meetTime];
+    input.meetStart = timeToInt(input);
     const club = new Club(input);
     await club.save();
     
