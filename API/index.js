@@ -56,6 +56,9 @@ app.get('/clubs', async(req,res)=>{
     for(let i = 0; i< clubs.length-1; i++){
         clubs[i].meetLength = clubs[i].meetLength[0];
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
+        for(let j = 0; j < clubs[i].tags.length; j++){
+            clubs[i].tags[j] = clubs[i].tags[j][0].toUpperCase() + clubs[i].tags[j].slice(1);
+        }
         command += JSON.stringify(clubs[i]).replaceAll("\"","\"") + ", ";
     }
     clubs[clubs.length-1].meetLength = clubs[clubs.length-1].meetLength[0];
