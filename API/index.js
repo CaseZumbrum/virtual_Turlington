@@ -56,6 +56,16 @@ app.get('/clubs', async(req,res)=>{
     for(let i = 0; i< clubs.length-1; i++){
         clubs[i].meetLength = clubs[i].meetLength[0];
         clubs[i].meetStart = clubs[i].meetStart[0].toString();
+
+        clubs[i].links.sort(function(a, b) {
+            var keyA = a[0],
+              keyB = b[0];
+            // Compare the 2 dates
+            if (keyA < keyB) return -1;
+            if (keyA > keyB) return 1;
+            return 0;
+          });
+
         for(let j = 0; j < clubs[i].tags.length; j++){
             clubs[i].tags[j] = clubs[i].tags[j][0].toUpperCase() + clubs[i].tags[j].slice(1);
         }

@@ -4,7 +4,7 @@ from thefuzz import fuzz
 
 
 class Club:
-    def __init__(self, name, tags, meetStart, meetLength, day, app,links):
+    def __init__(self, name, tags, meetStart, meetLength, day, app,links,info):
         self.name = name
         self.tags = tags
         self.meetStart = meetStart
@@ -12,9 +12,10 @@ class Club:
         self.day = day
         self.app = app
         self.links = links
+        self.info = info
 
     def print(self):
-        print("{" f"\\\"name\\\":\\\"{self.name}\\\", \\\"tags\\\":{self.tags}, \\\"meetStart\\\":{self.meetStart}, \\\"meetLength\\\":{self.meetLength}, \\\"day\\\":{self.day}, \\\"app\\\":{self.app}, \\\"links\\\":{self.links}" + "}", end="")
+        print("{" f"\\\"name\\\":\\\"{self.name}\\\", \\\"tags\\\":{self.tags}, \\\"meetStart\\\":{self.meetStart}, \\\"meetLength\\\":{self.meetLength}, \\\"day\\\":{self.day}, \\\"app\\\":{self.app}, \\\"links\\\":{self.links}, \\\"info\\\":\\\"{self.info}\\\"" + "}", end="")
 
 class User:
     def __init__(self, clubName, tags, meetStart, meetLength, day, app):
@@ -151,7 +152,8 @@ def main():
             club_info['meetLength'],
             club_info['day'],
             club_info['app'],
-            club_info['links'])
+            club_info['links'],
+            club_info["info"])
         club.score = 0.0
         clubs.append(club)
 
