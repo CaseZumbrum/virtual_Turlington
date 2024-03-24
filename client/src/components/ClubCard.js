@@ -1,11 +1,6 @@
 import { convertIntToDay } from "../help/DataConversions";
 
 const ClubCard = ({ club }) => {
-  const createCommaSeparatedList = (array) => {
-    let names = array.join(", ");
-    return <p>{names}</p>;
-  };
-
   return (
     <div className="club-card">
       <h1>{club.name}</h1>
@@ -32,15 +27,19 @@ const ClubCard = ({ club }) => {
         {club.day.map((d) => convertIntToDay(d)).join(", ")}
       </p>
       <p>
-        <strong>Links: </strong>
-        {club.links.map((link, index) => (
+        {club.links.length > 0 ? <strong>Links: </strong> : null}
+        {club.links.map((l, index) => (
           <li key={index}>
-            <a href={link}>link text LOL</a>
+            <a href={l.Link}>{l.Site}</a>
           </li>
         ))}
       </p>
-      {club.app ? <p>Application Required!</p> : null}
-      <p></p>
+
+      {club.app ? (
+        <p>Application Required: Yes</p>
+      ) : (
+        <p>Application Required: No</p>
+      )}
     </div>
   );
 };
