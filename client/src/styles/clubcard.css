@@ -10,6 +10,8 @@
 .clubCards {
   margin-top: 100px;
   margin-left: 10px;
-  flex: 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  grid-gap: 2px;
   z-index: 100;
 }
